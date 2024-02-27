@@ -9,7 +9,7 @@ export default function RandomNumber() {
   const [incorrectPredictionCount, setIncorrectPredictionCount] = useState(0);
 
   useEffect(() => {
-    // Fetch random number when the component mounts
+   
     fetchRandomNumber();
   }, []);
 
@@ -27,11 +27,11 @@ export default function RandomNumber() {
     const userPredictionNumber = Number(userPrediction);
   
     if (userPredictionNumber === randomNumber) {
-      // User prediction is correct, make a POST request
+     
       submitPrediction();
       setPredictionResult('Yippee!');
     } else {
-      // Incorrect prediction, check if higher or lower
+   
       const isHigher = userPredictionNumber > randomNumber;
       setIncorrectPredictionCount(incorrectPredictionCount + 1);
       setPredictionResult(isHigher ? 'Predicted Higher' : 'Predicted Lower');
@@ -44,7 +44,7 @@ export default function RandomNumber() {
     try {
       await axios.post('http://localhost:8085/client/predicted', {
         fullName: userName,
-        numberOfTries: incorrectPredictionCount + 1, // Increment the count for correct prediction
+        numberOfTries: incorrectPredictionCount + 1, 
         randomNumber: {
           number: userPrediction,
         },
@@ -84,7 +84,7 @@ export default function RandomNumber() {
       />
 
       <button className='button' onClick={checkPrediction}>
-        SUBMIT
+        CHECK YOUR PREDICTION
       </button>
 
       <p className='fade-out'>{predictionResult}</p>
